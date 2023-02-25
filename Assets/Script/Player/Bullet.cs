@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Bullet : MonoBehaviour
+{
+    public int Damage { get; set;}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyController>().Hp -= Damage;
+            Destroy(this.gameObject);
+        }
+        else if (collision.tag == "Ray" || collision.tag == "Player")
+        { }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}
